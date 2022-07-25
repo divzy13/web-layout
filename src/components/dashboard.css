@@ -74,3 +74,52 @@ button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled)
     color: #339ecc;
     border-color: #339ecc
 }
+
+.square {
+    width: 300px;
+    height: 200px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 1rem 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #339ecc;
+    display: block;
+    width: 100%;
+    position: relative;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 40%);
+    transition: all 0.4s;
+  }
+
+  .square_1 {
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 1rem 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #339ecc;
+    display: block;
+    width: 100%;
+    position: relative;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 40%);
+    transition: all 0.4s;
+
+  }
