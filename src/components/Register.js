@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Form from "../utilities/Forms";
+import { useAuth } from '../contexts/AuthContext';
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -8,6 +9,40 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [validate, setValidate] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  console.log('Am in register')
+
+  const usernameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const [error, setError] = useState('');
+  const [waiting, setWaiting] = useState(false);
+  const {signup} = useAuth();
+  const navigate = useNavigate();
+  const verbose = true;
+  
+  
+  async function submitHandler(e) {
+  e.preventDefault()
+  setWaiting(true)
+  const validate = validateRegister();
+
+  if (validate) {
+    setValidate({});
+    setName("");
+    setEmail("");
+    setPassword("");
+    console.log("Successfully Register User");
+  }
+
+  try {
+    signup(usernameRef.current.value, emailRef.current.value, passwordRef.current.value)
+    navigate('/private')
+  } catch (err){
+    setError(verbose ? err.message : 'Failed created the account')
+    
+  } 
+  setWaiting(false)
+}
 
   const validateRegister = () => {
     let isValid = true;
@@ -39,19 +74,19 @@ const Register = () => {
     return isValid;
   };
 
-  const register = (e) => {
-    e.preventDefault();
+  // const register = (e) => {
+  //   e.preventDefault();
 
-    const validate = validateRegister();
+  //   const validate = validateRegister();
 
-    if (validate) {
-      setValidate({});
-      setName("");
-      setEmail("");
-      setPassword("");
-      alert("Successfully Register User");
-    }
-  };
+  //   if (validate) {
+  //     setValidate({});
+  //     setName("");
+  //     setEmail("");
+  //     setPassword("");
+  //     alert("Successfully Register User");
+  //   }
+  // };
 
   const togglePassword = (e) => {
     if (showPassword) {
@@ -71,12 +106,13 @@ const Register = () => {
               <form
                 className="auth-form"
                 method="POST"
-                onSubmit={register}
+                onSubmit={submitHandler}
                 autoComplete={"off"}
               >
                 <div className="name mb-3">
                   <input
                     type="text"
+                    ref={usernameRef}
                     className={`form-control ${
                       validate.validate && validate.validate.name
                         ? "is-invalid "
@@ -105,6 +141,7 @@ const Register = () => {
                 <div className="email mb-3">
                   <input
                     type="email"
+                    ref={emailRef}
                     className={`form-control ${
                       validate.validate && validate.validate.email
                         ? "is-invalid "
@@ -134,6 +171,7 @@ const Register = () => {
                   <div className="input-group">
                     <input
                       type={showPassword ? "text" : "password"}
+                      ref={passwordRef}
                       className={`form-control ${
                         validate.validate && validate.validate.password
                           ? "is-invalid "
@@ -175,6 +213,7 @@ const Register = () => {
                   <button
                     type="submit"
                     className="button btn-primary w-100 theme-btn mx-auto"
+                    disabled={waiting}
                   >
                     Sign Up
                   </button>

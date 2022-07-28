@@ -1,9 +1,11 @@
 import 'react-router-dom';
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import AlgoModal from "./Algo-Payment-Modal/AlgoModal";
 import Modal from "./Payment-Modal/Modal";
 import StripePay from "./StripeCheckout";
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom'
 
 const Button = styled.button`
   min-width: 300px;
@@ -27,8 +29,18 @@ const Button = styled.button`
 `;
 
 function Dashboard({ total }) {
+    const { user, logout } = useAuth()
+    const [error, setError] = useState('');
+    const [waiting, setWaiting] = useState(false);
+    const navigate = useNavigate()
+    const verbose = true;
+    console.log('Am in dashboard')
+
+    const orderRef = useRef();
     const [showAlgoModal, setShowAlgoModal] = useState(false);
     const [buttonText, setButtonText] = useState(true);
+    const [buttonText1, setButtonText1] = useState(true);
+
     console.log(showAlgoModal)
 
     const openAlgoModal = () => {
@@ -41,17 +53,47 @@ function Dashboard({ total }) {
         setShowModal((prev) => !prev);
     };
 
+    function handleLogout() {
+        setWaiting(true)
+        try {
+            logout()
+            navigate('/login')
+        } catch (err) {
+            setError(verbose ? err.message : 'Failed created the account')
+        }
+        setWaiting(false)
+
+
+    }
+
     return (
-        <div className="dashboard">
-            <div>
-                <div class="square">
-                    {buttonText === true ? 'Product 1 \n 30 days subscriptions': 'Active Subscription'}
+        <div >
+            <div className="dashboard">
+                <div className="heading">
+                    <h3>Welcome back : {user.username}</h3>
+                    <Button className="logout_btn" variant='link' disabled={waiting} onClick={handleLogout}>Log out</Button>
+                </div>
+                <div>
+                    <div class="square">
+                        {buttonText === true ? 'Product 1 \n 30 days subscriptions' : 'Active Subscription'}
+                    </div>
+                    <br></br>
+                    <div >
+                        <button onClick={() => setButtonText(!buttonText)} class="square_1">{buttonText === true ? 'Order' : 'Days untill manual renewal'}</button>
+                    </div>
+                    <br></br>
                 </div>
                 <br></br>
-                <div >
-                    <button onClick={() => setButtonText(!buttonText)} class="square_1">{buttonText === true ? 'Order': 'Days untill manual renewal'}</button>
+                <div>
+                    <div class="square">
+                        {buttonText1 === true ? 'Product 2 \n 60 days subscriptions' : 'Active Subscription'}
+                    </div>
+                    <br></br>
+                    <div >
+                        <button onClick={() => setButtonText1(!buttonText1)} class="square_1">{buttonText1 === true ? 'Order' : 'Days untill manual renewal'}</button>
+                    </div>
+                    <br></br>
                 </div>
-                <br></br>
             </div>
             <div className="checkout-page">
                 <div className="payment">

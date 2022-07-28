@@ -29,7 +29,7 @@ const ModalWrapper = styled.div`
   width: 400px;
   height: 500px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-  background: var(--background);
+  background:  #339ecc;
   color: var(--color);
   position: relative;
   z-index: 10;
@@ -57,7 +57,6 @@ const ModalContent = styled.div`
   button {
     padding: 10px 24px;
     background: #141414;
-    background-color: #339ecc;
     color: var(--color);
     border: none;
     cursor: pointer;

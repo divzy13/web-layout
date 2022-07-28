@@ -27,27 +27,33 @@
     z-index: 2;
 }
 
-.btn:focus, .btn:active {
+.btn:focus,
+.btn:active {
     outline: none !important;
     box-shadow: none !important;
 }
 
-.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+.input-group> :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
     margin-left: -1px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu), .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3) {
+.input-group:not(.has-validation)> :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu),
+.input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
+button:not(:disabled),
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled) {
     cursor: pointer;
 }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-sm,
+.btn-group-sm>.btn {
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
     border-radius: 0.2rem;
@@ -98,9 +104,9 @@ button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled)
     border: none;
     box-shadow: 0 1px 4px rgb(0 0 0 / 40%);
     transition: all 0.4s;
-  }
+}
 
-  .square_1 {
+.square_1 {
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
@@ -122,4 +128,34 @@ button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled)
     box-shadow: 0 1px 4px rgb(0 0 0 / 40%);
     transition: all 0.4s;
 
-  }
+}
+
+.heading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8%;
+    text-align: center;
+    background-color: #339ecc;
+    color: white;
+}
+
+.logout_btn {
+    text-align: center;
+    position: relative;
+    left: 1610px;
+    top: -20px;
+    display: block;
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+}
+
+.checkout-page{
+    position: static;
+    text-align: center;
+}

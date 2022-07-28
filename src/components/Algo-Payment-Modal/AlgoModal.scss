@@ -87,7 +87,7 @@
     right: 0;
     position: absolute;
     flex-direction: column;
-    background: var(--background);
+    background: #141414;
     border-radius: 8px;
     display: none;
     margin-top: 2px;
@@ -140,8 +140,8 @@
   
   .dropDownConnect_item_list {
     white-space: nowrap;
-    background-color: var(--background);
-    color: var(--color);
+    background-color: #141414;
+    color: white;
     padding: 5px 10px;
     border-radius: 10px;
     text-transform: uppercase;
@@ -149,7 +149,7 @@
   
   /*  */
   .connect_wallet_button {
-    color: var(--wht);
+    color: #141414;
     font-size: 12px;
     cursor: pointer;
     letter-spacing: 0.4px;
@@ -208,7 +208,7 @@
     justify-content: center;
     flex-direction: column;
   
-    background: rgba(0, 0, 0, 0.6);
+    background-color: #141414;
   }
   .mn_sm_modal {
     width: 350px;
@@ -222,6 +222,8 @@
     flex-direction: column;
     overflow: hidden;
     border-top: 1px solid var(--border-default);
+    background-color: #141414;
+
   }
   .mn_sm_modal_inn {
     width: 100%;
@@ -229,6 +231,8 @@
     border-radius: 12px;
     margin: 20px 0px;
     border: 1px solid var(--l1);
+    background-color: #141414;
+
   }
   .mn_l1 {
     padding-bottom: 10px;

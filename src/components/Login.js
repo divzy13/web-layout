@@ -1,7 +1,11 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Form from "../utilities/Forms";
 import "./dashboard.css"
+import Dashboard from './dashboard';
+import { useAuth } from '../contexts/AuthContext';
+
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,6 +13,32 @@ const Login = () => {
   const [remember, setRemember] = useState(false);
   const [validate, setValidate] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const [error, setError] = useState('');
+  const [waiting, setWaiting] = useState(false);
+  const {signin} = useAuth();
+  const navigate = useNavigate();
+  const verbose = true;
+  console.log('Am in login')
+
+  
+  async function submitHandler(e) {
+    e.preventDefault()
+    setWaiting(true)
+    const validate = validateLogin();
+
+    try {
+      signin(emailRef.current.value, passwordRef.current.value)
+      console.log(emailRef.current.value, passwordRef.current.value)
+      navigate('/private')
+    } catch (err){
+      setError(verbose ? err.message : 'Failed created the account')
+      
+    } 
+    setWaiting(false)
+  }
 
   const validateLogin = () => {
     let isValid = true;
@@ -36,25 +66,18 @@ const Login = () => {
     return isValid;
   };
 
-  const authenticate = (e) => {
-    e.preventDefault();
+  // const authenticate = (e) => {
+  //   e.preventDefault();
 
-    const validate = validateLogin();
+  //   const validate = validateLogin();
 
-    if (validate) {
-      setValidate({});
-      setEmail("");
-      setPassword("");
-      alert("Successfully Login");
-    }
-
-    if (validate) {
-      <Link to={validate ? '/dashboard' : ''}>
-        Login
-      </Link>
-
-    }
-  };
+  //   if (validate) {
+  //     setValidate({});
+  //     setEmail("");
+  //     setPassword("");
+  //     console.log("Successfully Login");
+  //   }
+  // };
 
   const togglePassword = (e) => {
     if (showPassword) {
@@ -74,12 +97,13 @@ const Login = () => {
             <form
               className="auth-form"
               method="POST"
-              onSubmit={authenticate}
+              onSubmit={submitHandler}
               autoComplete={"off"}
             >
               <div className="email mb-3">
                 <input
                   type="email"
+                  ref={emailRef}
                   className={`form-control ${validate.validate && validate.validate.email
                       ? "is-invalid "
                       : ""
@@ -114,6 +138,7 @@ const Login = () => {
                     name="password"
                     id="password"
                     value={password}
+                    ref={passwordRef}
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -171,7 +196,6 @@ const Login = () => {
                   >
                     Log In
                   </button>
-                  <Link to="/dashboard">Go To Dashboard</Link>
               </div>
             </form>
 

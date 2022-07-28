@@ -38,13 +38,12 @@ const AlertAlgoModal = ({ darkTheme }) => {
               justifyContent: "center",
               textTransform: "uppercase",
               border: "1px solid var(--l1)",
-              background: "var(--main-col)",
             }}
             onClick={() => {
               dispatch({ type: "close_modal" });
             }}
           >
-            <i className="uil uil-times"></i>
+            <i className="uil uil-times">X</i>
           </div>
         </div>
 
