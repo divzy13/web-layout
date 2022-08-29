@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Form from "../utilities/Forms";
 import { useAuth } from '../contexts/AuthContext';
+import React from 'react';
 
 const Register = () => {
   const [name, setName] = useState("");

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "../utilities/Forms";
+import React from 'react';
 
 const Forgot = () => {
   const [email, setEmail] = useState("");

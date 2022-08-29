@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectDarkMode } from "../../redux/toggleTheme/toggle-selectors";
 import "./AlgoModal.scss";
+import React from 'react';
 
 const AlertAlgoModal = ({ darkTheme }) => {
   const dispatch = useDispatch();

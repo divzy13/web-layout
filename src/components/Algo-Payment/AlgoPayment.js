@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { formatJsonRpcRequest } from "@json-rpc-tools/utils";
 import QRCodeModal from "algorand-walletconnect-qrcode-modal";
 import AlertAlgoModal from "../Algo-Payment-Modal/AlertAlgoModal";
+import React from 'react';
 
 const AlgoPayment = ({ price }) => {
   const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import Register from "./components/Register";
 import Forgot from "./components/Forgot";
 import PrivateRouteDashboard from './components/PrivateRouteDashboard'
 import AuthProvider from './contexts/AuthContext';
-
+import React from 'react';
 
 
 function App() {
